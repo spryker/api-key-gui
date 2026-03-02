@@ -9,10 +9,5 @@ namespace Spryker\Zed\ApiKeyGui\Dependency\Service;
 
 interface ApiKeyGuiToUtilTextServiceInterface
 {
-    /**
-     * @param int $length
-     *
-     * @return string
-     */
     public function generateRandomString(int $length): string;
 }

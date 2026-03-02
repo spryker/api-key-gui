@@ -47,19 +47,11 @@ class CreateApiKeyForm extends AbstractType
      */
     protected const VALIDITY_DATE_FORMAT = 'Y-m-d';
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'api-key';
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
@@ -125,12 +117,6 @@ class CreateApiKeyForm extends AbstractType
         return $this;
     }
 
-    /**
-     * @param string $fieldName
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     *
-     * @return void
-     */
     protected function addDateTimeTransformer(string $fieldName, FormBuilderInterface $builder): void
     {
         $builder

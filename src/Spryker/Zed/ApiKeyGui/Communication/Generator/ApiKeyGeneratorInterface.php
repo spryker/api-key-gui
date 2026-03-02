@@ -9,8 +9,5 @@ namespace Spryker\Zed\ApiKeyGui\Communication\Generator;
 
 interface ApiKeyGeneratorInterface
 {
-    /**
-     * @return string
-     */
     public function generate(): string;
 }

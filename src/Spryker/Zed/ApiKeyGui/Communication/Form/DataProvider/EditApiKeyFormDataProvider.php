@@ -18,9 +18,6 @@ class EditApiKeyFormDataProvider
      */
     protected ApiKeyGuiToApiKeyFacadeInterface $apiKeyFacade;
 
-    /**
-     * @param \Spryker\Zed\ApiKeyGui\Dependency\Facade\ApiKeyGuiToApiKeyFacadeInterface $apiKeyFacade
-     */
     public function __construct(ApiKeyGuiToApiKeyFacadeInterface $apiKeyFacade)
     {
         $this->apiKeyFacade = $apiKeyFacade;

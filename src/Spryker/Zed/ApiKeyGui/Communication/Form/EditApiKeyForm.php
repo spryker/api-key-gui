@@ -66,9 +66,6 @@ class EditApiKeyForm extends AbstractType
      */
     protected const LABEL_REGENERATE_KEY = 'Regenerate Key';
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'api-key';
@@ -150,12 +147,6 @@ class EditApiKeyForm extends AbstractType
         return $this;
     }
 
-    /**
-     * @param string $fieldName
-     * @param \Symfony\Component\Form\FormBuilderInterface $builder
-     *
-     * @return void
-     */
     protected function addDateTimeTransformer(string $fieldName, FormBuilderInterface $builder): void
     {
         $builder

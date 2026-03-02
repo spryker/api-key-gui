@@ -26,9 +26,6 @@ use Symfony\Component\Form\FormInterface;
  */
 class ApiKeyGuiCommunicationFactory extends AbstractCommunicationFactory
 {
-    /**
-     * @return \Spryker\Zed\ApiKeyGui\Communication\Table\ApiKeyTable
-     */
     public function createApiKeyTable(): ApiKeyTable
     {
         return new ApiKeyTable(
@@ -36,9 +33,6 @@ class ApiKeyGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ApiKeyGui\Communication\Form\DataProvider\EditApiKeyFormDataProvider
-     */
     public function createEditApiKeyFormDataProvider(): EditApiKeyFormDataProvider
     {
         return new EditApiKeyFormDataProvider(
@@ -46,9 +40,6 @@ class ApiKeyGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function getCreateApiKeyForm(): FormInterface
     {
         return $this->getFormFactory()->create(CreateApiKeyForm::class);
@@ -64,17 +55,11 @@ class ApiKeyGuiCommunicationFactory extends AbstractCommunicationFactory
         return $this->getFormFactory()->create(EditApiKeyForm::class, $apiKeyData);
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createDeleteApiKeyForm(): FormInterface
     {
         return $this->getFormFactory()->create(DeleteApiKeyForm::class);
     }
 
-    /**
-     * @return \Spryker\Zed\ApiKeyGui\Communication\Generator\ApiKeyGeneratorInterface
-     */
     public function createApiKeyGenerator(): ApiKeyGeneratorInterface
     {
         return new ApiKeyGenerator(
@@ -83,25 +68,16 @@ class ApiKeyGuiCommunicationFactory extends AbstractCommunicationFactory
         );
     }
 
-    /**
-     * @return \Orm\Zed\ApiKey\Persistence\SpyApiKeyQuery
-     */
     public function getApiKeyPropelQuery(): SpyApiKeyQuery
     {
         return $this->getProvidedDependency(ApiKeyGuiDependencyProvider::PROPEL_QUERY_API_KEY);
     }
 
-    /**
-     * @return \Spryker\Zed\ApiKeyGui\Dependency\Facade\ApiKeyGuiToApiKeyFacadeInterface
-     */
     public function getApiKeyFacade(): ApiKeyGuiToApiKeyFacadeInterface
     {
         return $this->getProvidedDependency(ApiKeyGuiDependencyProvider::FACADE_API_KEY);
     }
 
-    /**
-     * @return \Spryker\Zed\ApiKeyGui\Dependency\Service\ApiKeyGuiToUtilTextServiceInterface
-     */
     public function getUtilTextService(): ApiKeyGuiToUtilTextServiceInterface
     {
         return $this->getProvidedDependency(ApiKeyGuiDependencyProvider::SERVICE_UTIL_TEXT);

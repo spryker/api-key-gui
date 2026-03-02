@@ -15,38 +15,18 @@ use Generated\Shared\Transfer\ApiKeyCriteriaTransfer;
 
 interface ApiKeyGuiToApiKeyFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ApiKeyCriteriaTransfer $apiKeyCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ApiKeyCollectionTransfer
-     */
     public function getApiKeyCollection(
         ApiKeyCriteriaTransfer $apiKeyCriteriaTransfer
     ): ApiKeyCollectionTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ApiKeyCollectionRequestTransfer $apiKeyCollectionRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\ApiKeyCollectionResponseTransfer
-     */
     public function createApiKeyCollection(
         ApiKeyCollectionRequestTransfer $apiKeyCollectionRequestTransfer
     ): ApiKeyCollectionResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ApiKeyCollectionRequestTransfer $apiKeyCollectionRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\ApiKeyCollectionResponseTransfer
-     */
     public function updateApiKeyCollection(
         ApiKeyCollectionRequestTransfer $apiKeyCollectionRequestTransfer
     ): ApiKeyCollectionResponseTransfer;
 
-    /**
-     * @param \Generated\Shared\Transfer\ApiKeyCollectionDeleteCriteriaTransfer $apiKeyCollectionDeleteCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ApiKeyCollectionResponseTransfer
-     */
     public function deleteApiKeyCollection(
         ApiKeyCollectionDeleteCriteriaTransfer $apiKeyCollectionDeleteCriteriaTransfer
     ): ApiKeyCollectionResponseTransfer;

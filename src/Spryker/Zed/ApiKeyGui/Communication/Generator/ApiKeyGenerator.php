@@ -22,10 +22,6 @@ class ApiKeyGenerator implements ApiKeyGeneratorInterface
      */
     protected ApiKeyGuiConfig $config;
 
-    /**
-     * @param \Spryker\Zed\ApiKeyGui\Dependency\Service\ApiKeyGuiToUtilTextServiceInterface $utilTextService
-     * @param \Spryker\Zed\ApiKeyGui\ApiKeyGuiConfig $config
-     */
     public function __construct(
         ApiKeyGuiToUtilTextServiceInterface $utilTextService,
         ApiKeyGuiConfig $config
@@ -34,9 +30,6 @@ class ApiKeyGenerator implements ApiKeyGeneratorInterface
         $this->config = $config;
     }
 
-    /**
-     * @return string
-     */
     public function generate(): string
     {
         return $this->utilTextService->generateRandomString($this->config->getApiKeyLength());

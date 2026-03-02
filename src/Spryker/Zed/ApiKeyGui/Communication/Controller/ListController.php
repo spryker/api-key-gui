@@ -15,9 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class ListController extends AbstractController
 {
-    /**
-     * @return array
-     */
     public function indexAction(): array
     {
         $apiKeyTable = $this->getFactory()->createApiKeyTable();
@@ -27,9 +24,6 @@ class ListController extends AbstractController
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function tableAction(): JsonResponse
     {
         $apiKeyTable = $this->getFactory()->createApiKeyTable();

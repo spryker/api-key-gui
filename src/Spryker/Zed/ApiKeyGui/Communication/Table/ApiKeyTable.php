@@ -98,19 +98,11 @@ class ApiKeyTable extends AbstractTable
      */
     protected SpyApiKeyQuery $apiKeyQuery;
 
-    /**
-     * @param \Orm\Zed\ApiKey\Persistence\SpyApiKeyQuery $apiKeyQuery
-     */
     public function __construct(SpyApiKeyQuery $apiKeyQuery)
     {
         $this->apiKeyQuery = $apiKeyQuery;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     protected function configure(TableConfiguration $config): TableConfiguration
     {
         $this->setHeader($config);
@@ -127,11 +119,6 @@ class ApiKeyTable extends AbstractTable
         return $config;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setHeader(TableConfiguration $config): void
     {
         $config->setHeader([
@@ -143,11 +130,6 @@ class ApiKeyTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSearchable(TableConfiguration $config): void
     {
         $config->setSearchable([
@@ -157,11 +139,6 @@ class ApiKeyTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSortable(TableConfiguration $config): void
     {
         $config->setSortable([
@@ -171,11 +148,6 @@ class ApiKeyTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return array
-     */
     protected function prepareData(TableConfiguration $config): array
     {
         $preparedQuery = $this->apiKeyQuery
@@ -209,11 +181,6 @@ class ApiKeyTable extends AbstractTable
         ];
     }
 
-    /**
-     * @param int $idApiKey
-     *
-     * @return array
-     */
     protected function createTableActions(int $idApiKey): array
     {
         $buttons = [];
@@ -231,11 +198,6 @@ class ApiKeyTable extends AbstractTable
         return $buttons;
     }
 
-    /**
-     * @param \DateTime|null $dateTime
-     *
-     * @return string
-     */
     protected function generateValidTo(?DateTime $dateTime): string
     {
         if ($dateTime === null) {
@@ -246,21 +208,11 @@ class ApiKeyTable extends AbstractTable
             : $this->generateLabel($this->formatDateTime($dateTime), 'label-warning');
     }
 
-    /**
-     * @param \DateTime $dateTime
-     *
-     * @return bool
-     */
     protected function isDateTimeExpired(DateTime $dateTime): bool
     {
         return $dateTime > new DateTime();
     }
 
-    /**
-     * @param \DateTime $dateTime
-     *
-     * @return string
-     */
     protected function formatDateTime(DateTime $dateTime): string
     {
         return $dateTime->format('Y-m-d');
