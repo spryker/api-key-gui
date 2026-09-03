@@ -6,7 +6,16 @@
 'use strict';
 
 $(document).ready(function () {
-    $('#api-key_valid_to').datepicker({
+    const validTo = $('#api-key_valid_to');
+
+    // From spryker/gui 5.4.0 on, this field is built with `DatePickerType`, which marks it with
+    // `data-spryker-picker` and lets the Gui DateTimePicker initialize it. Older Gui versions have
+    // no such type, so the legacy picker below is set up instead.
+    if (validTo.is('[data-spryker-picker]')) {
+        return;
+    }
+
+    validTo.datepicker({
         dateFormat: 'yy-mm-dd',
         changeMonth: true,
         numberOfMonths: 3,

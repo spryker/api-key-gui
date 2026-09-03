@@ -9,6 +9,7 @@ namespace Spryker\Zed\ApiKeyGui\Communication\Form;
 
 use DateTime;
 use Generated\Shared\Transfer\ApiKeyTransfer;
+use Spryker\Zed\Gui\Communication\Form\Type\DatePickerType;
 use Spryker\Zed\Kernel\Communication\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -46,6 +47,16 @@ class CreateApiKeyForm extends AbstractType
      * @var string
      */
     protected const VALIDITY_DATE_FORMAT = 'Y-m-d';
+
+    /**
+     * @var string
+     */
+    protected const MIN_DATE_EXPIRATION_INTERVAL = '+1 day';
+
+    /**
+     * @var string
+     */
+    protected const LEGACY_EXPIRATION_FIELD_CLASS = 'js-valid-to-date-picker safe-datetime';
 
     public function getBlockPrefix(): string
     {
@@ -101,20 +112,59 @@ class CreateApiKeyForm extends AbstractType
     {
         $builder->add(
             static::FIELD_EXPIRATION,
-            DateType::class,
-            [
-                'label' => 'Valid To',
-                'widget' => 'single_text',
-                'required' => false,
-                'attr' => [
-                    'class' => 'js-valid-to-date-picker safe-datetime',
-                ],
-            ],
+            $this->getExpirationFieldType(),
+            $this->getExpirationFieldOptions(),
         );
 
         $this->addDateTimeTransformer(static::FIELD_EXPIRATION, $builder);
 
         return $this;
+    }
+
+    protected function getExpirationFieldType(): string
+    {
+        if ($this->isGuiDatePickerTypeAvailable()) {
+            return DatePickerType::class;
+        }
+
+        return DateType::class;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function getExpirationFieldOptions(): array
+    {
+        $options = [
+            'label' => 'Valid To',
+            'required' => false,
+        ];
+
+        if ($this->isGuiDatePickerTypeAvailable()) {
+            return $options + [
+                // An API key must stay valid for at least one full day. The picker only understands
+                // `today` or a concrete date in the field's own format, not relative offsets, so the
+                // bound is resolved to a date here.
+                'min_date' => $this->createMinExpirationDate(),
+            ];
+        }
+
+        return $options + [
+            'widget' => 'single_text',
+            'attr' => [
+                'class' => static::LEGACY_EXPIRATION_FIELD_CLASS,
+            ],
+        ];
+    }
+
+    protected function isGuiDatePickerTypeAvailable(): bool
+    {
+        return class_exists(DatePickerType::class);
+    }
+
+    protected function createMinExpirationDate(): string
+    {
+        return (new DateTime(static::MIN_DATE_EXPIRATION_INTERVAL))->format(static::VALIDITY_DATE_FORMAT);
     }
 
     protected function addDateTimeTransformer(string $fieldName, FormBuilderInterface $builder): void
