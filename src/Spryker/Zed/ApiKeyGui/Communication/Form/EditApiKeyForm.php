@@ -151,6 +151,9 @@ class EditApiKeyForm extends AbstractType
         return $this;
     }
 
+    /**
+     * @phpstan-return class-string<\Symfony\Component\Form\FormTypeInterface>
+     */
     protected function getExpirationFieldType(): string
     {
         if ($this->isGuiDatePickerTypeAvailable()) {
